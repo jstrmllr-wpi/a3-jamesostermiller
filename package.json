@@ -1,0 +1,15 @@
+{
+  "name": "Recipe Wiki",
+  "version": "1.0",
+  "description": "A site for recipes",
+  "author": "James Ostermiller",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "mime": "^2.4.4"
+  },
+  "engines": {
+     "node":"24.x"
+  }
+}

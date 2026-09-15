@@ -168,7 +168,7 @@ ingredient-card, step-card {
 step-card {
   flex-grow:4;
 }
-delete-wrapper{
+button-wrapper{
   width:100%;
   padding:5px;
 }

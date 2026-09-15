@@ -25,10 +25,7 @@ const fetch_allRecipes = async function( event ) {
 
 // Submits a new recipe to the server
 const post_newRecipe = async function( event ) {
-  // stop form submission from trying to load
-  // a new .html page for displaying results...
-  // this was the original browser behavior and still
-  // remains to this day
+  // stop form submission from trying to load new page
   event.preventDefault()
 
   const name = document.querySelector( '#recipename' ),
@@ -62,12 +59,9 @@ const post_newRecipe = async function( event ) {
   recipeList.appendChild(createHTMLRecipeCard(newRecipe))
 }
 
-// 
+// Asks the server to delete the recipe with the given ID
 const post_deleteRecipe = async function( event ) {
-  // stop form submission from trying to load
-  // a new .html page for displaying results...
-  // this was the original browser behavior and still
-  // remains to this day
+  // stop form submission from trying to load new page
   event.preventDefault()
 
   recipeCard = event.target.parentElement.parentElement
@@ -90,88 +84,77 @@ const post_deleteRecipe = async function( event ) {
 
 // Generates the HTML to hold a recipe
 function createHTMLRecipeCard(newRecipe){
-
   // Create recipe card
-  const newRecipeCard = document.createElement('article')
-  newRecipeCard.id = `recipe${newRecipe.index}`
-  newRecipeCard.classList.add('recipe-card')
-  newRecipeCard.classList.add('border')
+  const newRecipeCard = newElem({
+    type:'article',
+    id:`recipe${newRecipe.index}`,
+    classes:['recipe-card','border']
+  })
 
   // Add title to recipe card
-  const newTitle = document.createElement('h3')
-  let text = document.createTextNode(`${newRecipe.name}`)
-  newTitle.appendChild(text)
-  newRecipeCard.appendChild(newTitle)
+  newRecipeCard.appendChild(newElem({type:'h3', text:`${newRecipe.name}`}))
 
   // Add time info to recipe card
   const newTimeInfo = document.createElement('time-info')
-  {
-    // Add prep time
-    let newTime = document.createElement('time-item');
-    let text = document.createTextNode('Prep time');
-    newTime.appendChild(text);
-    let span = document.createElement('span');
-    if(newRecipe.preptime){
-      text = document.createTextNode(`${newRecipe.preptime} minutes`);
-      span.appendChild(text);
-    }
-    newTime.appendChild(span);
-    newTimeInfo.appendChild(newTime);
-    
-    // Add cook time
-    newTime = document.createElement('time-item');
-    text = document.createTextNode('Cook time');
-    newTime.appendChild(text);
-    span = document.createElement('span');
-    if(newRecipe.cooktime){
-      text = document.createTextNode(`${newRecipe.cooktime} minutes`);
-      span.appendChild(text);
-    }
-    newTime.appendChild(span);
-    newTimeInfo.appendChild(newTime);
-
-    // Add total time
-    newTime = document.createElement('time-item');
-    text = document.createTextNode('Total time');
-    newTime.appendChild(text);
-    span = document.createElement('span');
-    if(newRecipe.totaltime){
-      text = document.createTextNode(`${newRecipe.totaltime} minutes`);
-      span.appendChild(text);
-    }
-    newTime.appendChild(span);
-    newTimeInfo.appendChild(newTime);
-  }
+  newTimeInfo.appendChild(newTimeElem('Prep time', newRecipe.preptime))
+  newTimeInfo.appendChild(newTimeElem('Cook time', newRecipe.cooktime))
+  newTimeInfo.appendChild(newTimeElem('Total time', newRecipe.totaltime))
   newRecipeCard.appendChild(newTimeInfo);
   
   // Add ingredients
-  const newIngredients = document.createElement('ingredient-card');
-  newIngredients.classList.add('border');
-  text = document.createTextNode(`${newRecipe.ingredients}`);
-  newIngredients.appendChild(text);
-  newRecipeCard.appendChild(newIngredients);
+  newRecipeCard.appendChild(newElem({
+    type:'ingredient-card',
+    text:`${newRecipe.ingredients}`,
+    classes:['border']
+  }))
 
   // Add steps
-  const newSteps = document.createElement('step-card');
-  newSteps.classList.add('border');
-  text = document.createTextNode(`${newRecipe.steps}`);
-  newSteps.appendChild(text);
-  newRecipeCard.appendChild(newSteps);
+  newRecipeCard.appendChild(newElem({
+    type:'step-card',
+    text:`${newRecipe.steps}`,
+    classes:['border']
+  }))
 
-  const deleteButtonWrapper = document.createElement('delete-wrapper')
-  const deleteButton = document.createElement('input');
+  // Creates the delete button in a 100%-width wrapper
+  const buttonWrapper = newElem({type:'button-wrapper'})
+  const deleteButton = newElem({type:'input'});
   deleteButton.setAttribute('type','button')
   deleteButton.setAttribute('value','Delete')
-  deleteButtonWrapper.appendChild(deleteButton)
-  newRecipeCard.appendChild(deleteButtonWrapper)
+  buttonWrapper.appendChild(deleteButton)
+  newRecipeCard.appendChild(buttonWrapper)
   deleteButton.onclick = post_deleteRecipe
 
   return newRecipeCard;
 }
 
-// function newTElement(type, text){
-//   const element = document.createElement(type)
-//   const textNode = document.createTextNode(text)
-//   element.appendChild(textNode)
-//   return element
-// }
+// Returns a new html element with the given type, text, id, and classes (array)
+function newElem({type, text, id, classes}){
+  const element = document.createElement(type)
+  if(text){
+    const textNode = document.createTextNode(text)
+    element.appendChild(textNode)
+  }
+  if(id){
+    element.id=id
+  }
+  if(classes){
+    for (let c of classes){
+      element.classList.add(c)
+    }
+  }
+  return element
+}
+
+// Creates a time-item with with the given label and "[time] minutes" in a span
+function newTimeElem(label, time){
+  let newTime = newElem({type:'time-item', text:label})
+  let span = null
+  if(time){
+    span = newElem({type:'span', text:`${time} minutes`})
+  }
+  else {
+    span = document.createElement('span')
+  }
+  newTime.appendChild(span)
+  return newTime
+}

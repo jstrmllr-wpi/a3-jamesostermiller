@@ -1,6 +1,30 @@
-// FRONT-END (CLIENT) JAVASCRIPT HERE
+window.onload = function() {
+  fetch_allRecipes()
 
-const submit = async function( event ) {
+  const createform = document.querySelector('#create-recipe')
+  createform.onsubmit = post_newRecipe
+}
+
+// Requests all of the preexisting recipe data
+const fetch_allRecipes = async function( event ) {
+  const response = await fetch( '/allrecipes', {
+    method:'GET' 
+  })
+
+  const returnedtext = await response.text()
+
+  allrecipes = JSON.parse( returnedtext )
+  console.log( 'all recipes', allrecipes )
+
+  const recipeList = document.getElementById('recipe-list')
+
+  for(let recipe of allrecipes) {
+    recipeList.appendChild(createHTMLRecipeCard(recipe));
+  }
+}
+
+// Submits a new recipe to the server
+const post_newRecipe = async function( event ) {
   // stop form submission from trying to load
   // a new .html page for displaying results...
   // this was the original browser behavior and still
@@ -20,9 +44,10 @@ const submit = async function( event ) {
               },
         body = JSON.stringify( json )
 
-  const response = await fetch( '/submit', {
+  const response = await fetch( '/newrecipe', {
     method:'POST',
-    body 
+    headers: {'Content-Type': 'application/json'},
+    body: body
   })
 
   const returnedtext = await response.text()
@@ -37,23 +62,33 @@ const submit = async function( event ) {
   recipeList.appendChild(createHTMLRecipeCard(newRecipe))
 }
 
-const loadall = async function( event ) {
-  const response = await fetch( '/data', {
-    method:'GET' 
+// 
+const post_deleteRecipe = async function( event ) {
+  // stop form submission from trying to load
+  // a new .html page for displaying results...
+  // this was the original browser behavior and still
+  // remains to this day
+  event.preventDefault()
+
+  recipeCard = event.target.parentElement.parentElement
+
+  recipeId = recipeCard.id
+  console.log('id: ', recipeId)
+  index = parseInt(recipeId.charAt(recipeId.length - 1))
+  console.log('index: ', index)
+
+  body = JSON.stringify({index: index})
+
+  const response = await fetch( '/deleterecipe', {
+    method:'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: body
   })
 
-  const returnedtext = await response.text()
-
-  allrecipes = JSON.parse( returnedtext )
-  console.log( 'all recipes', allrecipes )
-
-  const recipeList = document.getElementById('recipe-list')
-
-  for(let recipe of allrecipes) {
-    recipeList.appendChild(createHTMLRecipeCard(recipe));
-  }
+  recipeCard.remove()
 }
 
+// Generates the HTML to hold a recipe
 function createHTMLRecipeCard(newRecipe){
 
   // Create recipe card
@@ -129,36 +164,14 @@ function createHTMLRecipeCard(newRecipe){
   deleteButton.setAttribute('value','Delete')
   deleteButtonWrapper.appendChild(deleteButton)
   newRecipeCard.appendChild(deleteButtonWrapper)
-  deleteButton.onclick = deleteRecipe
+  deleteButton.onclick = post_deleteRecipe
 
   return newRecipeCard;
 }
 
-const deleteRecipe = async function( event ) {
-  // stop form submission from trying to load
-  // a new .html page for displaying results...
-  // this was the original browser behavior and still
-  // remains to this day
-  event.preventDefault()
-
-  recipeCard = event.target.parentElement.parentElement
-
-  recipeId = recipeCard.id
-  console.log('id: ', recipeId)
-  index = parseInt(recipeId.charAt(recipeId.length - 1))
-  console.log('index: ', index)
-
-  const response = await fetch( '/delete', {
-    method:'POST',
-    index
-  })
-
-  recipeCard.remove()
-}
-
-window.onload = function() {
-  loadall()
-
-  const createform = document.querySelector('#create-recipe')
-  createform.onsubmit = submit
-}
+// function newTElement(type, text){
+//   const element = document.createElement(type)
+//   const textNode = document.createTextNode(text)
+//   element.appendChild(textNode)
+//   return element
+// }

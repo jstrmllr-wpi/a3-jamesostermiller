@@ -3,55 +3,101 @@
 <head>
   <title>Recipe Wiki</title>
   <meta charset='utf-8'>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='preconnect' href='https://fonts.googleapis.com'>
+  <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+  <link href='https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap' rel='stylesheet'>
   <script src='js/main.js'></script>
-  <link rel='stylesheet' href='css/main.css'>
+  <link rel='stylesheet' href='normalize.css'>
+  <link rel='stylesheet' href='pure.css'>
+  <link rel='stylesheet' href='grids-responsive.css'>
+  <link rel='stylesheet' href ='css/custom-styles.css'>
+  <!-- <link rel='stylesheet' href='css/main.css'> -->
   
   <!-- get rid of favicon error -->
   <link rel='icon' href='data:;base64,iVBORw0KGgo='>
 </head>
 
 <body>
-  <header>
-    <h1>Recipe Wiki</h1>
-    <div>by James Ostermiller</div>
+  <header class='pure-menu pure-menu-horizontal'>
+    <h1 class='pure-menu-heading'>Recipe Wiki</h1>
+    <ul class='pure-menu-list'>
+      <li class='pure-menu-item pure-menu-disabled'>
+        <a href='#' class='pure-menu-link'>Browse recipes</a>
+      </li>
+      <li class='pure-menu-item'>
+        <a href='#' class='pure-menu-link'>Log in</a>
+      </li>
+      <li class='pure-menu-item'>
+        <a href='#' class='pure-menu-link'>Create account</a>
+      </li>
+    </ul>
   </header>
   
-  <main>
-    <section id='create-recipe-form' class='border'>
-      <h2>New Recipe</h2>
-      <form id='create-recipe'>
+  <main class='pure-g'>
+    <section id='recipe-form' class='pure-u-1 pure-u-md-1-2'>
+      <h2>New Recipe</h3>
+      <form id='create-recipe' class='pure-form pure-form-aligned'>
+        <div class='pure-control-group'>
+          <label for='recipename'>Recipe name:</label>
+          <input type='text' id='recipename' placeholder='Chocolate Chip Cookies' required>
+          <span class='pure-form-message-inline'>The recipe name is required.</span>
+        </div>
 
-        <label for='recipename'>*Recipe name:</label>
-        <input type='text' id='recipename' placeholder='Chocolate Chip Cookies' required>
+        <div class='pure-control-group'>
+          <label for='preptime'>Prep time:</label>
+          <unit-wrapper>
+            <input type='number' id='preptime' placeholder='30' min=0>
+            <input-unit>minutes</input-unit>
+          </unit-wrapper>
+        </div>
 
-        <label for='preptime'>Prep time:</label>
-        <unit-wrapper>
-          <input type='number' id='preptime' placeholder='30' min=0>
-          <input-unit>minutes</input-unit>
-        </unit-wrapper>
+        <div class='pure-control-group'>
+          <label for='cooktime'>Cook time:</label>
+          <unit-wrapper>
+            <input type='number' id='cooktime' placeholder='15' min=0>
+            <input-unit>minutes</input-unit>
+          </unit-wrapper>
+        </div>
 
-        <label for='cooktime'>Cook time:</label>
-        <unit-wrapper>
-          <input type='number' id='cooktime' placeholder='15' min=0>
-          <input-unit>minutes</input-unit>
-        </unit-wrapper>
+        <div class='pure-control-group'>
+          <label for='ingredients'>*Ingredients:</label>
+          <textarea required id='ingredients' placeholder='1 cup sugar&#10;1 cup flour&#10;...'></textarea>
+          <span class='pure-form-message-inline'>The ingredients are required.</span>
+        </div>
+
+        <div class='pure-control-group'>
+          <label for='steps'>*Steps:</label>
+          <textarea required id='steps' placeholder='1. Combine dry ingredients in a small bowl...'></textarea>
+          <span class='pure-form-message-inline'>The steps are required.</span>
+        </div>
         
-        <label for='ingredients'>*Ingredients:</label>
-        <textarea required id='ingredients' placeholder='1 cup sugar&#10;1 cup flour&#10;...'></textarea>
 
-        <label for='steps'>*Steps:</label>
-        <textarea required id='steps' placeholder='1. Combine dry ingredients in a small bowl...'></textarea>
-        
-        <input type='submit' value='Create'>
+        <div class='pure-controls'>
+          <input type='submit' value='Create' class='pure-button pure-button-primary'>
+        </div>
       </form>
     </section>
-
-    <section id='recipe-list' class='border'>
+    
+    <section id='recipe-list' class='pure-u-1 pure-u-md-1-2'>
       <h2>Submitted Recipes</h2>
+      <article id='recipe0' class='pure-g'>
+        <h3 class='pure-u-1'>Souffle</h3>
+        <time-info class='pure-u-1'>
+          <time-item>Prep time<span>20 minutes</span></time-item>
+          <time-item>Cook time<span>30 minutes</span></time-item>
+          <time-item>Total time<span>50 minutes</span></time-item>
+        </time-info>
+        <div class='pure-u-1-2'>
+          <ingredient-card>402 eggs</ingredient-card>
+        </div>
+        <div class='pure-u-1-2'>
+          <step-card>Mash em</step-card>
+        </div>
+        <button-wrapper class='pure-u-1'>
+          <input type="button" value="Delete" class='pure-button'>
+        </button-wrapper>
+      </article>
     </section>
   </main>
 </body>

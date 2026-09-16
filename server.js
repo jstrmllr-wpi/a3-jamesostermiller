@@ -3,23 +3,28 @@ const http = require('http'),
       port = 3000
 
 // Express server
-const express = require("express"),
+const express = require('express'),
       app = express(),
-      databasename = 'sample_mflix',
-      collectionname = 'comments'
+      purecss = require('purecss')
 
-app.use(express.static("public"))
+app.use(express.static('public'))
 app.use(express.json())
+
+// CSS framework: normalize.css + purecss
+app.use(express.static('node_modules/normalize.css'))
+app.use(express.static('node_modules/purecss/build'))
 
 // Database setup
 const dotenv = require('dotenv').config(),
       uri = `${process.env.MONGODB_URI}`,
-      { MongoClient, ObjectID } = require("mongodb"),
+      { MongoClient, ObjectID } = require('mongodb'),
       client = new MongoClient(uri),
+      databasename = 'sample_mflix',
+      collectionname = 'comments',
       recipes = []
 let nextindex = 0;
 
-app.get( '/allrecipes', async (req,res) => {
+app.get('/allrecipes', async (req,res) => {
   res.send(JSON.stringify(recipes))
 })
 
@@ -38,7 +43,7 @@ app.post( '/deleterecipe', async (req,res) => {
   index = req.body.index
   recipes.splice(index,1)
 
-  res.writeHead(200, "OK", {'Content-Type':'text/plain'})
+  res.writeHead(200, 'OK', {'Content-Type':'text/plain'})
   res.end('ok')
 })
 

@@ -10,7 +10,9 @@
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "mime": "^2.4.4",
-    "mongodb": "^7.6.0"
+    "mongodb": "^7.6.0",
+    "purecss": "^3.0.0",
+    "normalize.css": "^8.0.1"
   },
   "engines": {
     "node": "24.x"

@@ -88,36 +88,42 @@ function createHTMLRecipeCard(newRecipe){
   const newRecipeCard = newElem({
     type:'article',
     id:`recipe${newRecipe.index}`,
-    classes:['recipe-card','border']
+    classes:['pure-g']
   })
 
   // Add title to recipe card
-  newRecipeCard.appendChild(newElem({type:'h3', text:`${newRecipe.name}`}))
+  newRecipeCard.appendChild(newElem({
+    type:'h3',
+    text:`${newRecipe.name}`,
+    classes:['pure-u-1']
+  }))
 
   // Add time info to recipe card
-  const newTimeInfo = document.createElement('time-info')
+  const newTimeInfo = newElem({type:'time-info', classes:['pure-u-1']})
   newTimeInfo.appendChild(newTimeElem('Prep time', newRecipe.preptime))
   newTimeInfo.appendChild(newTimeElem('Cook time', newRecipe.cooktime))
   newTimeInfo.appendChild(newTimeElem('Total time', newRecipe.totaltime))
   newRecipeCard.appendChild(newTimeInfo);
   
   // Add ingredients
-  newRecipeCard.appendChild(newElem({
+  const newIngredients = newElem({type:'div', classes:['pure-u-1-2']})
+  newIngredients.appendChild(newElem({
     type:'ingredient-card',
-    text:`${newRecipe.ingredients}`,
-    classes:['border']
+    text:`${newRecipe.ingredients}`
   }))
+  newRecipeCard.appendChild(newIngredients)
 
   // Add steps
-  newRecipeCard.appendChild(newElem({
+  const newSteps = newElem({type:'div', classes:['pure-u-1-2']})
+  newSteps.appendChild(newElem({
     type:'step-card',
-    text:`${newRecipe.steps}`,
-    classes:['border']
+    text:`${newRecipe.steps}`
   }))
+  newRecipeCard.appendChild(newSteps)
 
   // Creates the delete button in a 100%-width wrapper
-  const buttonWrapper = newElem({type:'button-wrapper'})
-  const deleteButton = newElem({type:'input'});
+  const buttonWrapper = newElem({type:'button-wrapper',classes:['pure-u-1']})
+  const deleteButton = newElem({type:'input',classes:['pure-button']});
   deleteButton.setAttribute('type','button')
   deleteButton.setAttribute('value','Delete')
   buttonWrapper.appendChild(deleteButton)

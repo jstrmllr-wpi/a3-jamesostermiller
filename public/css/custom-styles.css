@@ -9,11 +9,16 @@
 }
 *{
     box-sizing:border-box;
-}
-html {
     overscroll-behavior:none;
 }
+html,body {
+    height:100%;
+}
+
+/* HEADER */
 header{
+    height:55px;
+    overflow-x:auto;
     background-color:var(--color1);
     h1{
         font-size:1em;
@@ -32,13 +37,21 @@ header{
         }
     }
 }
+
+/* MAIN CONTENT */
+main{
+    height:calc(100vh - 55px);
+    overflow-y:auto;
+}
 h2{
     margin-top:0;
 }
-#recipe-form{
+.form-wrapper{
     background-color:var(--color3);
     padding:20px;
     color:var(--color6);
+}
+form{
     .pure-form-message-inline{
         color:var(--color1);
     }
@@ -48,11 +61,27 @@ h2{
         /* min-width:300px; */
     }
     textarea{
-        min-height:200px;
+        min-height:150px;
         resize:vertical;
     }
 }
+.pure-button-primary{
+    background-color:var(--color5);
+}
+h2.centered{
+    text-align:center;
+}
+.centered{
+        max-width:fit-content;
+        margin-left:auto;
+        margin-right:auto;
+}
+/* main{
+    max-width:max-content;
+    margin:0 auto;
+} */
 
+/* RECIPE CARDS */
 #recipe-list{
     background-color:var(--color6);
     padding:20px;

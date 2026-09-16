@@ -28,11 +28,11 @@ const post_newRecipe = async function( event ) {
   // stop form submission from trying to load new page
   event.preventDefault()
 
-  const name = document.querySelector( '#recipename' ),
-        preptime = document.querySelector( '#preptime' ),
-        cooktime = document.querySelector( '#cooktime' ),
-        ingredients = document.querySelector( '#ingredients' ),
-        steps = document.querySelector( '#steps' ),
+  const name = document.querySelector( 'input[name=recipename]' ),
+        preptime = document.querySelector( 'input[name=preptime]' ),
+        cooktime = document.querySelector( 'input[name=cooktime]' ),
+        ingredients = document.querySelector( 'textarea[name=ingredients]' ),
+        steps = document.querySelector( 'textarea[name=steps]' ),
         json = {name: name.value,
                 preptime:preptime.valueAsNumber,
                 cooktime:cooktime.valueAsNumber,
@@ -48,7 +48,7 @@ const post_newRecipe = async function( event ) {
   })
 
   const returnedtext = await response.text()
-  // console.log( 'response:', returnedtext )
+  console.log( 'response:', returnedtext )
 
   newRecipe = JSON.parse( returnedtext )
   console.log( 'new recipe', newRecipe )
@@ -57,6 +57,7 @@ const post_newRecipe = async function( event ) {
   const recipeList = document.getElementById('recipe-list')
 
   recipeList.appendChild(createHTMLRecipeCard(newRecipe))
+  document.querySelector('#create-recipe').reset()
 }
 
 // Asks the server to delete the recipe with the given ID
@@ -67,11 +68,11 @@ const post_deleteRecipe = async function( event ) {
   recipeCard = event.target.parentElement.parentElement
 
   recipeId = recipeCard.id
-  console.log('id: ', recipeId)
-  index = parseInt(recipeId.charAt(recipeId.length - 1))
-  console.log('index: ', index)
+  console.log('htmlid: ', recipeId)
+  id = recipeId.substring(6)
+  console.log('extractedid: ', id)
 
-  body = JSON.stringify({index: index})
+  body = JSON.stringify({id: id})
 
   const response = await fetch( '/deleterecipe', {
     method:'POST',
@@ -87,7 +88,7 @@ function createHTMLRecipeCard(newRecipe){
   // Create recipe card
   const newRecipeCard = newElem({
     type:'article',
-    id:`recipe${newRecipe.index}`,
+    id:`recipe${newRecipe._id}`,
     classes:['pure-g']
   })
 

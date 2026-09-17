@@ -90,7 +90,7 @@ form{
             width:6em;
         }
         >.pure-controls{
-            margin-left:6em;
+            margin-left:7.4em;
         }
     }
 }
@@ -147,6 +147,7 @@ time-item {
 ingredient-card, step-card {
   display:block;
   background-color:var(--color3);
+  color:var(--color7);
   margin:5px;
   padding:15px;
   white-space:pre-line

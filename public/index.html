@@ -4,9 +4,9 @@
   <title>Recipe Wiki</title>
   <meta charset='utf-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
-  <link rel='preconnect' href='https://fonts.googleapis.com'>
-  <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
-  <link href='https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap' rel='stylesheet'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wdth,wght@87.5,200..900&display=swap" rel="stylesheet">
   <script src='js/main.js'></script>
   <link rel='stylesheet' href='normalize.css'>
   <link rel='stylesheet' href='pure.css'>
@@ -41,9 +41,8 @@
       <h2>New Recipe</h3>
       <form id='create-recipe' class='pure-form pure-form-aligned'>
         <div class='pure-control-group'>
-          <label for='recipename'>Recipe name:</label>
+          <label for='recipename'>*Recipe name:</label>
           <input type='text' id='recipename' placeholder='Chocolate Chip Cookies' required>
-          <span class='pure-form-message-inline'>The recipe name is required.</span>
         </div>
 
         <div class='pure-control-group'>
@@ -65,13 +64,11 @@
         <div class='pure-control-group'>
           <label for='ingredients'>*Ingredients:</label>
           <textarea required id='ingredients' placeholder='1 cup sugar&#10;1 cup flour&#10;...'></textarea>
-          <span class='pure-form-message-inline'>The ingredients are required.</span>
         </div>
 
         <div class='pure-control-group'>
           <label for='steps'>*Steps:</label>
           <textarea required id='steps' placeholder='1. Combine dry ingredients in a small bowl...'></textarea>
-          <span class='pure-form-message-inline'>The steps are required.</span>
         </div>
         
 

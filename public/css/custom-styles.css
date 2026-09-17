@@ -10,9 +10,16 @@
 *{
     box-sizing:border-box;
     overscroll-behavior:none;
+    font-weight:inherit;
 }
 html,body {
     height:100%;
+    font-family:'Inconsolata';
+    font-weight:700;
+    font-size:18px;
+    /* font-stretch:500; */
+    /* font-variation-settings:
+        "wdth" 600; */
 }
 
 /* HEADER */
@@ -51,6 +58,7 @@ header{
 main{
     height:calc(100vh - 60px);
     overflow-y:auto;
+    background-color:var(--color6);
 }
 h2{
     margin-top:0;
@@ -124,7 +132,7 @@ time-item {
         margin-left:1ch;
     }
     &:last-child{
-        font-weight:bold;
+        font-weight:inherit;
     }
 }
 ingredient-card, step-card {

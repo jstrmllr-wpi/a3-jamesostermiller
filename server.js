@@ -56,6 +56,8 @@ app.post( '/createaccount', async (req,res) => {
   else{
     const acknowledgement = await userdb.insertOne(newuser)
     console.log('Account created with username "' + newuser.username + '"');
+    req.session.user = newuser._id
+    req.session.login = true
     res.redirect('index.html')
   }
 })

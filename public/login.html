@@ -6,7 +6,7 @@
   <meta name='viewport' content='width=device-width, initial-scale=1'>
   <link rel='preconnect' href='https://fonts.googleapis.com'>
   <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
-  <link href='https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap' rel='stylesheet'>
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wdth,wght@87.5,200..900&display=swap" rel="stylesheet">
   <!-- <script src='js/main.js'></script> -->
   <link rel='stylesheet' href='normalize.css'>
   <link rel='stylesheet' href='pure.css'>
@@ -22,12 +22,6 @@
   <header class='pure-menu pure-menu-horizontal'>
     <h1 class='pure-menu-heading'>Recipe Wiki</h1>
     <ul class='pure-menu-list'>
-      <li class='pure-menu-item pure-menu-disabled'>
-        <a class='pure-menu-link'>Browse recipes</a>
-      </li>
-      <li class='pure-menu-item pure-menu-disabled'>
-        <a class='pure-menu-link'>My recipes</a>
-      </li>
       <li class='pure-menu-item selected'>
         <a href='login.html' class='pure-menu-link'>Log in</a>
       </li>
@@ -42,15 +36,13 @@
     <section class='pure-u-1'>
         <form action='/login' method='POST' class='pure-form pure-form-aligned centered'>
             <div class='pure-control-group'>
-                <label for='username'>Username:</label>
-                <input type='text' id='username' required>
-                <span class='pure-form-message-inline'>The username is required.</span>
+                <label for='username'>*Username:</label>
+                <input type='text' id='username' name='username' required>
             </div>
 
             <div class='pure-control-group'>
-                <label for='password'>Password:</label>
-                <input type='text' id='password' required>
-                <span class='pure-form-message-inline'>The password is required.</span>
+                <label for='password'>*Password:</label>
+                <input type='text' id='password' name='password' required>
             </div>
 
             <div class='pure-controls'>

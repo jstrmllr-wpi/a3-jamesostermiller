@@ -17,8 +17,10 @@ html,body {
 
 /* HEADER */
 header{
-    height:55px;
+    height:60px;
+    align-content:center;
     overflow-x:auto;
+    overflow-y:hidden;
     background-color:var(--color1);
     h1{
         font-size:1em;
@@ -36,11 +38,18 @@ header{
             color:var(--color6);
         }
     }
+    button{
+        background-color:unset;
+        border:unset;
+    }
+    .selected{
+        outline:1px solid var(--color6);
+    }
 }
 
 /* MAIN CONTENT */
 main{
-    height:calc(100vh - 55px);
+    height:calc(100vh - 60px);
     overflow-y:auto;
 }
 h2{
@@ -64,6 +73,9 @@ form{
         min-height:150px;
         resize:vertical;
     }
+    input[type=submit]:focus{
+        outline:1px solid var(--color1);
+    }
 }
 .pure-button-primary{
     background-color:var(--color5);
@@ -76,10 +88,6 @@ h2.centered{
         margin-left:auto;
         margin-right:auto;
 }
-/* main{
-    max-width:max-content;
-    margin:0 auto;
-} */
 
 /* RECIPE CARDS */
 #recipe-list{
@@ -126,6 +134,9 @@ ingredient-card, step-card {
   padding:15px;
   white-space:pre-line
 }
-button-wrapper{
+button-wrapper, author-card{
     margin:5px;
+    > input[type=button]:focus{
+        outline:1px solid var(--color6);
+    }
 }

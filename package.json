@@ -12,7 +12,8 @@
     "mime": "^2.4.4",
     "mongodb": "^7.6.0",
     "purecss": "^3.0.0",
-    "normalize.css": "^8.0.1"
+    "normalize.css": "^8.0.1",
+    "cookie-session": "^2.1.1"
   },
   "engines": {
     "node": "24.x"

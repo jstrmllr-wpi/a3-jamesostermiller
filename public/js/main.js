@@ -1,8 +1,46 @@
 window.onload = function() {
-  fetch_allRecipes()
+  loadContent()
+}
 
-  const createform = document.querySelector('#create-recipe')
-  createform.onsubmit = post_newRecipe
+const loadContent = async function(){
+  if(window.location.pathname != '/login.html'
+    && window.location.pathname != '/createaccount.html'){
+    const username = await check_login()
+
+    if(username){
+      if(window.location.pathname == '/profile.html'){
+        display_username(username)
+        fetch_myRecipes()
+      }
+      if(window.location.pathname == '/index.html'){
+        fetch_allRecipes()
+        const createform = document.querySelector('#create-recipe')
+        createform.onsubmit = post_newRecipe
+      }
+    }
+  }
+}
+
+function display_username(username) {
+  const section = document.getElementById('profile-info')
+  section.insertBefore(
+    newElem({type:'h2',text:`Profile for ${username}`,classes:['centered']}),
+    section.firstChild
+  )
+}
+
+const check_login = async function() {
+  const response = await fetch( '/amiloggedin', {
+    method:'GET'
+  })
+
+  const returnedtext = await response.text()
+
+  username = JSON.parse(returnedtext).username
+  if(!username){
+    window.location.replace('login.html')
+  }
+  return username
 }
 
 // Requests all of the preexisting recipe data
@@ -19,7 +57,23 @@ const fetch_allRecipes = async function( event ) {
   const recipeList = document.getElementById('recipe-list')
 
   for(let recipe of allrecipes) {
-    recipeList.appendChild(createHTMLRecipeCard(recipe));
+    recipeList.appendChild(createHTMLRecipeCardWithAuthor(recipe));
+  }
+}
+
+// Requests the preexisting recipe data for the current logged-in user
+const fetch_myRecipes = async function( event ) {
+  const response = await fetch( '/myrecipes', {
+    method:'GET' 
+  })
+
+  const returnedtext = await response.text()
+
+  allrecipes = JSON.parse( returnedtext )
+  const recipeList = document.getElementById('recipe-list')
+
+  for(let recipe of allrecipes) {
+    recipeList.appendChild(createHTMLRecipeCardWithDelete(recipe));
   }
 }
 
@@ -83,6 +137,30 @@ const post_deleteRecipe = async function( event ) {
   recipeCard.remove()
 }
 
+function createHTMLRecipeCardWithAuthor(newRecipe){
+  newRecipeCard = createHTMLRecipeCard(newRecipe)
+  newRecipeCard.appendChild(newElem({
+    type:'author-card',
+    text:`${newRecipe.author}`,
+    classes:['pure-u-1-2']
+  }))
+  return newRecipeCard
+}
+
+function createHTMLRecipeCardWithDelete(newRecipe){
+  newRecipeCard = createHTMLRecipeCard(newRecipe)
+
+  // Creates the delete button in a 100%-width wrapper
+  const buttonWrapper = newElem({type:'button-wrapper',classes:['pure-u-1']})
+  const deleteButton = newElem({type:'input',classes:['pure-button']});
+  deleteButton.setAttribute('type','button')
+  deleteButton.setAttribute('value','Delete')
+  buttonWrapper.appendChild(deleteButton)
+  newRecipeCard.appendChild(buttonWrapper)
+  deleteButton.onclick = post_deleteRecipe
+  return newRecipeCard
+}
+
 // Generates the HTML to hold a recipe
 function createHTMLRecipeCard(newRecipe){
   // Create recipe card
@@ -122,16 +200,7 @@ function createHTMLRecipeCard(newRecipe){
   }))
   newRecipeCard.appendChild(newSteps)
 
-  // Creates the delete button in a 100%-width wrapper
-  const buttonWrapper = newElem({type:'button-wrapper',classes:['pure-u-1']})
-  const deleteButton = newElem({type:'input',classes:['pure-button']});
-  deleteButton.setAttribute('type','button')
-  deleteButton.setAttribute('value','Delete')
-  buttonWrapper.appendChild(deleteButton)
-  newRecipeCard.appendChild(buttonWrapper)
-  deleteButton.onclick = post_deleteRecipe
-
-  return newRecipeCard;
+  return newRecipeCard
 }
 
 // Returns a new html element with the given type, text, id, and classes (array)

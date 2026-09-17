@@ -12,7 +12,6 @@
   <link rel='stylesheet' href='pure.css'>
   <link rel='stylesheet' href='grids-responsive.css'>
   <link rel='stylesheet' href ='css/custom-styles.css'>
-  <!-- <link rel='stylesheet' href='css/main.css'> -->
   
   <!-- get rid of favicon error -->
   <link rel='icon' href='data:;base64,iVBORw0KGgo='>
@@ -22,15 +21,18 @@
   <header class='pure-menu pure-menu-horizontal'>
     <h1 class='pure-menu-heading'>Recipe Wiki</h1>
     <ul class='pure-menu-list'>
-      <li class='pure-menu-item pure-menu-disabled'>
-        <a href='/' class='pure-menu-link'>Browse recipes</a>
+      <li class='pure-menu-item selected'>
+        <a href='/index.html' class='pure-menu-link'>Browse recipes</a>
       </li>
       <li class='pure-menu-item'>
-        <a href='login.html' class='pure-menu-link'>Log in</a>
+        <a href='/profile.html' class='pure-menu-link'>My recipes</a>
       </li>
       <li class='pure-menu-item'>
-        <a href='/createaccount.html' class='pure-menu-link'>Create account</a>
+        <form action='/logout' method='POST'>
+          <button type='submit' class='pure-menu-link'>Log out</button>
+        </form>
       </li>
+
     </ul>
   </header>
   

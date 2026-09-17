@@ -42,14 +42,14 @@
       <form id='create-recipe' class='pure-form pure-form-aligned'>
         <div class='pure-control-group'>
           <label for='recipename'>Recipe name:</label>
-          <input type='text' name='recipename' placeholder='Chocolate Chip Cookies' required>
+          <input type='text' id='recipename' placeholder='Chocolate Chip Cookies' required>
           <span class='pure-form-message-inline'>The recipe name is required.</span>
         </div>
 
         <div class='pure-control-group'>
           <label for='preptime'>Prep time:</label>
           <unit-wrapper>
-            <input type='number' name='preptime' placeholder='30' min=0>
+            <input type='number' id='preptime' placeholder='30' min=0>
             <input-unit>minutes</input-unit>
           </unit-wrapper>
         </div>
@@ -57,20 +57,20 @@
         <div class='pure-control-group'>
           <label for='cooktime'>Cook time:</label>
           <unit-wrapper>
-            <input type='number' name='cooktime' placeholder='15' min=0>
+            <input type='number' id='cooktime' placeholder='15' min=0>
             <input-unit>minutes</input-unit>
           </unit-wrapper>
         </div>
 
         <div class='pure-control-group'>
           <label for='ingredients'>*Ingredients:</label>
-          <textarea required name='ingredients' placeholder='1 cup sugar&#10;1 cup flour&#10;...'></textarea>
+          <textarea required id='ingredients' placeholder='1 cup sugar&#10;1 cup flour&#10;...'></textarea>
           <span class='pure-form-message-inline'>The ingredients are required.</span>
         </div>
 
         <div class='pure-control-group'>
           <label for='steps'>*Steps:</label>
-          <textarea required name='steps' placeholder='1. Combine dry ingredients in a small bowl...'></textarea>
+          <textarea required id='steps' placeholder='1. Combine dry ingredients in a small bowl...'></textarea>
           <span class='pure-form-message-inline'>The steps are required.</span>
         </div>
         

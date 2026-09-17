@@ -3,20 +3,17 @@ window.onload = function() {
 }
 
 const loadContent = async function(){
-  const username = null
-  if(window.location.pathname == '/profile.html'){
-    username = await check_login()
+  if(window.location.pathname == '/index.html'){
+    fetch_allRecipes()
+    const createform = document.querySelector('#create-recipe')
+    createform.onsubmit = post_newRecipe
   }
 
-  if(username){
-    if(window.location.pathname == '/profile.html'){
+  if(window.location.pathname == '/profile.html'){
+    const username = await check_login()
+    if(username){
       display_username(username)
       fetch_myRecipes()
-    }
-    if(window.location.pathname == '/index.html'){
-      fetch_allRecipes()
-      const createform = document.querySelector('#create-recipe')
-      createform.onsubmit = post_newRecipe
     }
   }
 }

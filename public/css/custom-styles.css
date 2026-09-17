@@ -6,6 +6,7 @@
     --color4:#91785D;
     --color5:#77502C;
     --color6:#264736;
+    --color7:#062013;
 }
 *{
     box-sizing:border-box;
@@ -66,7 +67,7 @@ h2{
 .form-wrapper{
     background-color:var(--color3);
     padding:20px;
-    color:var(--color6);
+    color:var(--color7);
 }
 form{
     .pure-form-message-inline{
@@ -83,6 +84,14 @@ form{
     }
     input[type=submit]:focus{
         outline:1px solid var(--color1);
+    }
+    &.pure-form-aligned{
+        .pure-control-group > label{
+            width:6em;
+        }
+        >.pure-controls{
+            margin-left:6em;
+        }
     }
 }
 .pure-button-primary{

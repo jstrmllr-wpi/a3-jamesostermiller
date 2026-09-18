@@ -105,7 +105,28 @@ Include a very brief summary of your project here. Images are encouraged, along 
   - include any modifications to the CSS framework you made via custom CSS you authored
 
 ## Technical Achievements
-- **Tech Achievement 1**: I used OAuth authentication via the GitHub strategy
+- **Tech Achievement 1**: I got 100% in all four of the lighthouse tests (Performance, Accessibility, Best Practices, and SEO) on my index.html page (see screenshot below). I didn't have to do anything special for performance or best practices, but I did have to fix some contrast issues for the accessibility test and add meta tags to my pages for the SEO test.
+
+![image](lighthouseproof.png)
 
 ### Design/Evaluation Achievements
-- **Design Achievement 1**: I followed the following tips from the W3C Web Accessibility Initiative...
+- **Design Achievement 1**: I followed the following tips from the W3C Web Accessibility Initiative:
+  1. "Developing": Associate a label with every form control
+  2. "Developing": Identify page language and language changes
+  3. "Developing": Use mark-up to convey meaning and structure
+  4. "Developing": Write code that adapts to the user’s technology
+  5. "Developing": Ensure that all interactive elements are keyboard accessible
+  6. "Designing": Provide sufficient contrast between foreground and background
+  7. "Designing": Ensure that interactive elements are easy to identify
+  8. "Designing": Provide clear and consistent navigation options
+  9. "Designing": Ensure that form elements include clearly associated labels
+  10. "Designing": Create designs for different viewport sizes
+  11. "Writing": Provide informative, unique page titles
+  12. "Writing": Use headings to convey meaning and structure
+  
+- **Design Achievement 2**:
+  - **Contrast**: I used color contrast to emphasize the difference between the navigation bar, which has a light background, and the rest of the content, which has a darker green background. Within that green background, I used a contrast between a lighter green (with dark text) and a darker green (with light text) to emphasize the recipes section and differentiate it from the form section. Within the header, I used the same dark green to provide contrast between links which are not being hovered and those that are; and I put a square box around the link to the current page, in contrast to all of the links which have no border at all. I also used contrast between font styles and sizes to put emphasis on the headers; the main text is in a serif font, while the headers are in a serif font. The larger section headers further have a size contrast, while the recipe names are differentiated mostly by font style.
+
+  - **Repetition**: I used only 6 colors in my application, which are repeated through the various elements on each page. For example, the same cream color is used in the header, the background of the input elements, for any light text, and as the background of the time lines in the recipe cards. Each recipe card is also constructed in the same way, with the same elements and the same colors. Across pages, I have the same header on each page, and while it has different links depending on the page, pages with the same links have them in the same place and order. All form input elements look the same across all of my pages (same background, width, etc.), and the "form" sections of each page also have the same background color. The recipe cards are similarly almost the same between the main "browse recipes" page and the "my recipes" page, except that one shows the author and the other has a delete button. I use only two fonts throughout the applications, one of which is used across all of the body text and the other which is used for all of the headers, and although they are different styles, they are both monospace fonts for further consistency.
+  - **Alignment**:
+  - **Proximity**:

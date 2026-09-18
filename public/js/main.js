@@ -4,9 +4,12 @@ window.onload = function() {
 
 const loadContent = async function(){
   if(window.location.pathname == '/index.html'){
-    fetch_allRecipes()
-    const createform = document.querySelector('#create-recipe')
-    createform.onsubmit = post_newRecipe
+    // const username = await check_login()
+    // if(username){
+      fetch_allRecipes()
+      const createform = document.querySelector('#create-recipe')
+      createform.onsubmit = post_newRecipe
+    // }
   }
 
   if(window.location.pathname == '/profile.html'){
@@ -79,11 +82,11 @@ const post_newRecipe = async function( event ) {
   // stop form submission from trying to load new page
   event.preventDefault()
 
-  const name = document.querySelector( 'input[name=recipename]' ),
-        preptime = document.querySelector( 'input[name=preptime]' ),
-        cooktime = document.querySelector( 'input[name=cooktime]' ),
-        ingredients = document.querySelector( 'textarea[name=ingredients]' ),
-        steps = document.querySelector( 'textarea[name=steps]' ),
+  const name = document.querySelector( '#recipename' ),
+        preptime = document.querySelector( '#preptime' ),
+        cooktime = document.querySelector( '#cooktime' ),
+        ingredients = document.querySelector( '#ingredients' ),
+        steps = document.querySelector( '#steps' ),
         json = {name: name.value,
                 preptime:preptime.valueAsNumber,
                 cooktime:cooktime.valueAsNumber,
@@ -107,7 +110,7 @@ const post_newRecipe = async function( event ) {
 
   const recipeList = document.getElementById('recipe-list')
 
-  recipeList.appendChild(createHTMLRecipeCard(newRecipe))
+  recipeList.appendChild(createHTMLRecipeCardWithAuthor(newRecipe))
   document.querySelector('#create-recipe').reset()
 }
 

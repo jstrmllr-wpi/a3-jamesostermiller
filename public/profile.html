@@ -7,7 +7,7 @@
   <meta name='description' content='See your recipes on Recipe Wiki and update your account settings.'>
   <link rel='preconnect' href='https://fonts.googleapis.com'>
   <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wdth,wght@87.5,200..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wdth,wght@87.5,200..900&family=Xanh+Mono:ital@0;1&display=swap" rel="stylesheet">
   <script src='js/main.js'></script>
   <link rel='stylesheet' href='normalize.css'>
   <link rel='stylesheet' href='pure.css'>
@@ -41,12 +41,12 @@
     <section id='profile-info' class='pure-u-1 form-wrapper'>
         <form action='/editaccount' method='POST' class='pure-form centered'>
             <label for='password'>New password:</label>
-            <input type='text' id='password' required>
+            <input type='password' id='password' name='password' required>
             <input type='submit' value='Submit' class='pure-button pure-button-primary'>
         </form>
     </section>
     <section id='recipe-list' class='pure-u-1'>
-        <h2 class='centered'>My recipes</h2>
+        <h2>My recipes</h2>
 
     </section>
   </main>

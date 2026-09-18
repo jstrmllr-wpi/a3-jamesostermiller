@@ -4,12 +4,12 @@ window.onload = function() {
 
 const loadContent = async function(){
   if(window.location.pathname == '/index.html'){
-    // const username = await check_login()
-    // if(username){
+    const username = await check_login()
+    if(username){
       fetch_allRecipes()
       const createform = document.querySelector('#create-recipe')
       createform.onsubmit = post_newRecipe
-    // }
+    }
   }
 
   if(window.location.pathname == '/profile.html'){

@@ -6,9 +6,7 @@ https://a3-jamesostermiller.onrender.com/login.html
 My project is a website which allows you to make an account and upload recipes, and see all of the recipes which other people have uploaded. The authentication strategy uses cookies to track your login, storing the user id and a "logged in" flag. I used the "PureCSS" framework for my main layout, but since it's a fairly minimal framework, it required some custom css for laying out the recipe cards. I also wrote custom css to apply my own fonts and colors to most elements, and to center a few things.
 
 ## Technical Achievements
-- **Tech Achievement 1**: I got 100% in all four of the lighthouse tests (Performance, Accessibility, Best Practices, and SEO), running the test on my index.html page (see screenshot below). I didn't have to do anything special for performance or best practices, but I did have to fix several contrast issues for the accessibility test and add meta tags to my pages for the SEO test.
-
-![image](lighthouseproof.png)
+- **Tech Achievement 1**: I got 100% in all four of the lighthouse tests (Performance, Accessibility, Best Practices, and SEO), running the test on my index.html page: https://pagespeed.web.dev/analysis/https-a3-jamesostermiller-onrender-com-index-html/9lbig5gf01?form_factor=desktop. I didn't have to do anything special for performance or best practices, but I did have to fix several contrast issues for the accessibility test and add meta tags to my pages for the SEO test.
 
 ### Design/Evaluation Achievements
 - **Design Achievement 1**: I followed the following tips from the W3C Web Accessibility Initiative:
